@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { GlobalComponent } from "../components/commons/GlobalComponent";
-import Login from "../components/Login";
+import Login from "../views/authentication/Login";
 
 export function Index() {
   return (

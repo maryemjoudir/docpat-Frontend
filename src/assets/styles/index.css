@@ -19,3 +19,14 @@ body {
   min-height: 100vh;
   color: black;
 }
+.navBar {
+  background: linear-gradient(
+    89.8deg,
+    #e6f5ff -0.13%,
+    #f3faff 23.56%,
+    #f7fcff 99.83%
+  );
+}
+.btnSub {
+  background: linear-gradient(108.56deg, #20a8d3 5.8%, #01d1ff 122.34%);
+}
