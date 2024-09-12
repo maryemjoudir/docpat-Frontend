@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "../layouts/NavBar"; // Assurez-vous que le chemin est correct
+import NavBar from "../layouts/NavBar";
 
 export function GlobalComponent(): JSX.Element {
   return (

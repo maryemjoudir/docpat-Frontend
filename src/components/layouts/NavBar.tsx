@@ -4,6 +4,7 @@ import { FaRegCalendarAlt, FaRegClock } from "react-icons/fa";
 export default function NavBar(): JSX.Element {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [currentDate, setCurrentDate] = useState<string>("");
+  const isAuthenticated: boolean = !!localStorage.getItem("token");
 
   useEffect(() => {
     const updateTime = () => {
@@ -22,7 +23,9 @@ export default function NavBar(): JSX.Element {
         day: "numeric",
         month: "long",
       });
-      setCurrentDate(formattedDate);
+      setCurrentDate(
+        formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)
+      );
     };
 
     updateTime();
@@ -37,10 +40,8 @@ export default function NavBar(): JSX.Element {
     };
   }, []);
 
-  const isAuthenticated: boolean = !!localStorage.getItem("token");
-
   return (
-    <div className="bg-blue-500 text-white m-4 p-2 text-center shadow-md navBar rounded-lg flex justify-between items-center flex-wrap">
+    <div className="text-white m-4 p-2 text-center shadow-md navBar rounded-lg flex justify-between items-center flex-wrap">
       <div className="flex items-center space-x-2">
         {isAuthenticated && (
           <div className="flex items-center space-x-2">
