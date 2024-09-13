@@ -88,7 +88,7 @@ export default function PatientView(): JSX.Element {
     <>
       <ContentComponent>
         <div className="flex flex-wrap md:flex-nowrap items-center justify-between p-4">
-          <div className="flex flex-wrap items-center space-x-2">
+          <div className="flex flex-wrap items-center space-x-2 space-y-2 md:space-y-0">
             <img
               src="src/assets/images/search.svg"
               alt="Recherche"
@@ -127,6 +127,7 @@ export default function PatientView(): JSX.Element {
             </Link>
           </div>
         </div>
+
         <div className="mt-4 border border-[#50799E] rounded-lg pl-4 pr-4 ml-4 mr-4 overflow-auto">
           <table className="min-w-full bg-transparent border-separate border-spacing-0">
             <thead className="bg-transparent">

@@ -30,3 +30,9 @@ body {
 .btnSub {
   background: linear-gradient(108.56deg, #20a8d3 5.8%, #01d1ff 122.34%);
 }
+
+@media (max-width: 767px) {
+  #root {
+    overflow-x: auto;
+  }
+}

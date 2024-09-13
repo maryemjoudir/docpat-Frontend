@@ -103,8 +103,8 @@ export default function ReadPatientView(): JSX.Element {
           </button>
         </div>
       </div>
-      <div className="p-4 flex flex-row items-center">
-        <div className="flex flex-row flex-1 space-x-0">
+      <div className="p-4 flex flex-col md:flex-row items-center">
+        <div className="flex flex-col md:flex-row flex-1 space-y-4 md:space-y-0 md:space-x-0 md:space-x-4">
           <div
             className={`flex items-center justify-center flex-1 p-4 border border-gray-200 ${
               activeComponent === "patient"

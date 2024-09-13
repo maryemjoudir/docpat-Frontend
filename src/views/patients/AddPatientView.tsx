@@ -22,7 +22,8 @@ export default function AddPatientView(): JSX.Element {
     complementAdresse: "",
   };
   const [formData, setFormData] = useState(initialFormData);
-  const [age, setAge] = useState<number | null>(null);
+
+  const [age, setAge] = useState<number>(0);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -35,6 +36,7 @@ export default function AddPatientView(): JSX.Element {
       setAge(ageInYears);
     }
   };
+
   const handleCancel = () => {
     setFormData(initialFormData);
     setAge(null);
@@ -103,7 +105,7 @@ export default function AddPatientView(): JSX.Element {
           )}
           <div className="p-4">
             <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="flex flex-col">
                   <label className="text-sm font-medium text-[#50799E] mb-2">
                     CINE<span className="text-[#1AA5C0]">*</span>
@@ -147,20 +149,22 @@ export default function AddPatientView(): JSX.Element {
                   <label className="text-sm font-medium text-[#50799E] mb-2">
                     Sexe<span className="text-[#1AA5C0]">*</span>
                   </label>
-                  <input
-                    type="text"
+                  <select
                     name="sex"
-                    placeholder="SEXE"
                     value={formData.sex}
                     onChange={handleChange}
-                    className="border  bg-transparent border-gray-300 rounded-md p-2 focus:outline-none focus:border-[#50799E] placeholder:text-gray-200 placeholder:text-sm"
-                  />
+                    className="border  bg-transparent border-gray-300 rounded-md p-2 focus:outline-none focus:border-[#50799E]"
+                  >
+                    <option value="">Sélectionner...</option>
+                    <option value="male">Homme</option>
+                    <option value="female">Femme</option>
+                  </select>
                 </div>
               </div>
 
-              <div className="grid grid-cols-4 gap-4 mt-4">
-                <div className="flex flex-wrap items-center space-x-4">
-                  <div className="flex flex-col flex-grow">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                <div className="flex items-center space-x-4">
+                  <div className="flex flex-col">
                     <label className="text-sm font-medium text-[#50799E] mb-2">
                       Date de naissance<span className="text-[#1AA5C0]">*</span>
                     </label>
@@ -169,19 +173,18 @@ export default function AddPatientView(): JSX.Element {
                       name="birthDate"
                       value={formData.birthDate}
                       onChange={handleChange}
-                      className="border  bg-transparent border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-[#50799E]"
+                      className="border bg-transparent border-gray-300 rounded-md p-2 focus:outline-none focus:border-[#50799E] w-64"
                     />
                   </div>
                   {age !== null && (
                     <div
-                      className="flex items-center justify-center text-sm text-white font-semibold text-sm bg-[#50799E] rounded-md p-2.5 mt-6"
+                      className="flex items-center mt-7 justify-center text-sm text-white font-semibold bg-[#50799E] rounded-md p-3"
                       style={{ minWidth: "100px", maxWidth: "20%" }}
                     >
                       {age} ans
                     </div>
                   )}
                 </div>
-
                 <div className="flex flex-col">
                   <label className="text-sm font-medium text-[#50799E] mb-2">
                     Couverture<span className="text-[#1AA5C0]">*</span>
@@ -193,8 +196,8 @@ export default function AddPatientView(): JSX.Element {
                     className="border  bg-transparent border-gray-300 rounded-md p-2 focus:outline-none focus:border-[#50799E]"
                   >
                     <option value="">Sélectionner...</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
+                    <option value="option1">CNOPS</option>
+                    <option value="option2">CNSS</option>
                   </select>
                 </div>
                 <div className="flex flex-col">
@@ -281,7 +284,7 @@ export default function AddPatientView(): JSX.Element {
                 />
               </div>
 
-              <div className="flex justify-between mt-6">
+              <div className="flex justify-between mt-12">
                 <button
                   type="button"
                   onClick={handleCancel}

@@ -1,12 +1,13 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { FaExclamationCircle, FaEye, FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { NavigateFunction } from "react-router-dom";
 import AuthenticationService from "../../services/auth/AuthenticationService";
 
 export default function Login(): JSX.Element {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const location = useLocation();
   const navigate: NavigateFunction = useNavigate();
 
   const validateEmail = (email: string): boolean => {
@@ -14,11 +15,9 @@ export default function Login(): JSX.Element {
     return regex.test(email);
   };
   const validatePassword = (password: string): boolean => password.length >= 8;
-
   const handleTogglePassword = (): void => {
     setShowPassword((prev) => !prev);
   };
-
   const handleLogin = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
@@ -50,6 +49,13 @@ export default function Login(): JSX.Element {
         setErrorMessage("An error occurred");
       });
   };
+
+  useEffect(() => {
+    if (location.pathname === "/login") {
+      localStorage.removeItem("token");
+    }
+  }, [location]);
+
   return (
     <div className="flex h-full flex-col md:flex-row">
       <div className="hidden lg:flex flex-1 justify-center items-center">
