@@ -51,7 +51,9 @@ export default function PatientView(): JSX.Element {
         (patient) =>
           patient.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
           patient.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          patient.nationalId.toLowerCase().includes(searchTerm.toLowerCase())
+          patient.nationalId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          patient.coverage.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          patient.sex.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
   }, [searchTerm, patients]);
@@ -86,16 +88,16 @@ export default function PatientView(): JSX.Element {
     <>
       <ContentComponent>
         <div className="flex flex-wrap md:flex-nowrap items-center justify-between p-4">
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center space-x-2">
             <img
               src="src/assets/images/search.svg"
               alt="Recherche"
               className="w-7 h-7 mt-1"
             />
-            <span className="text-xl font-semibold text-[#50799E] font-semibold">
+            <span className="text-xl font-semibold text-[#50799E]">
               Recherche de patients
             </span>
-            <div className="flex items-center bg-white border border-[#50799E] rounded-3xl p-2 shadow-sm w-full md:w-auto">
+            <div className="flex items-center bg-white border border-[#50799E] rounded-3xl p-2 shadow-sm flex-grow md:w-auto w-full">
               <input
                 type="text"
                 placeholder="Recherche par (Nom, Prénom, CINE...)"
@@ -106,11 +108,11 @@ export default function PatientView(): JSX.Element {
               <img
                 src="src/assets/images/search_.svg"
                 alt="Recherche"
-                className="w-5 h-5 mr-2"
+                className="w-5 h-5 ml-2"
               />
             </div>
-            <button className="flex items-center bg-white text-[#1AA5c0] border border-[#50799E] hover:text-white focus:text:white hover:bg-[#0D88B4] focus:bg-[#0D88B4] text-[12px] rounded-3xl pl-2 h-11 shadow-sm ">
-              <FaFilter className="mr-2 ml-1 text-[#50799E] w-3 h-3" />
+            <button className="flex items-center bg-white text-[#1AA5c0] border border-[#50799E] hover:text-white focus:text:white hover:bg-[#0D88B4] focus:bg-[#0D88B4] text-[12px] rounded-3xl pl-2 h-11 shadow-sm">
+              <FaFilter className="mr-2 text-[#50799E] w-3 h-3" />
               Filtrer
             </button>
           </div>
