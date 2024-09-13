@@ -12,24 +12,23 @@ export interface Patient {
 
 interface PatientState {
   patients: Patient[];
+  selectedPatientId: number | null;
 }
 
 const initialState: PatientState = {
   patients: [],
+  selectedPatientId: null,
 };
 
 export const PatientSlice = createSlice({
   name: "patient",
   initialState,
   reducers: {
-    addPatient: (state, action: PayloadAction<Patient>) => {
-      state.patients.push({
-        ...action.payload,
-        id: state.patients.length,
-      });
+    selectPatientById: (state, action: PayloadAction<number>) => {
+      state.selectedPatientId = action.payload;
     },
   },
 });
 
-export default PatientSlice;
-export const { addPatient } = PatientSlice.actions;
+export default PatientSlice.reducer;
+export const { selectPatientById } = PatientSlice.actions;

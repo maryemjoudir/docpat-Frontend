@@ -41,19 +41,30 @@ export default function AddPatientView(): JSX.Element {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors: string[] = [];
-    if (!formData.lastName) errors.push("Nom ne doit pas être vide");
-    if (!formData.firstName) errors.push("Prénom ne doit pas être vide");
-    if (!formData.birthDate)
-      errors.push("Date de naissance ne doit pas être vide");
-    if (!formData.region) errors.push("Région ne doit pas être vide");
-    if (!formData.city) errors.push("Ville ne doit pas être vide");
-    if (!formData.district) errors.push("Commune ne doit pas être vide");
-    if (!formData.nationalId) errors.push("CINE mobile ne doit pas être vide");
-    if (!formData.coverage) errors.push("Couverture ne doit pas être vide");
-    if (!formData.complementAdresse)
-      errors.push("Complément d’adresse ne doit pas être vide");
-    if (!formData.sex) errors.push("Sexe ne doit pas être vide");
+
+    const requiredFields: { field: keyof typeof formData; message: string }[] =
+      [
+        { field: "lastName", message: "Nom ne doit pas être vide" },
+        { field: "firstName", message: "Prénom ne doit pas être vide" },
+        {
+          field: "birthDate",
+          message: "Date de naissance ne doit pas être vide",
+        },
+        { field: "region", message: "Région ne doit pas être vide" },
+        { field: "city", message: "Ville ne doit pas être vide" },
+        { field: "district", message: "Commune ne doit pas être vide" },
+        { field: "nationalId", message: "CINE mobile ne doit pas être vide" },
+        { field: "coverage", message: "Couverture ne doit pas être vide" },
+        {
+          field: "complementAdresse",
+          message: "Complément d’adresse ne doit pas être vide",
+        },
+        { field: "sex", message: "Sexe ne doit pas être vide" },
+      ];
+
+    const errors = requiredFields
+      .filter(({ field }) => !formData[field])
+      .map(({ message }) => message);
 
     if (errors.length > 0) {
       setErrorMessage(errors.join(", "));
@@ -69,6 +80,7 @@ export default function AddPatientView(): JSX.Element {
         toast.error("Une erreur est survenue");
       });
   };
+
   return (
     <>
       <ContentComponent>
@@ -279,7 +291,7 @@ export default function AddPatientView(): JSX.Element {
                 </button>
                 <button
                   type="submit"
-                  className="bg-[#1AA5C0] text-white text-sm px-16 py-2 rounded-md focus:text-[#1AA5C0] focus:bg-white focus:border focus:border-[#1AA4C0] hover:text-[#1AA5C0] hover:bg-white hover:border focus:border-[#1AA4C0]  focus:outline-none"
+                  className="bg-[#1AA5C0] text-white text-sm px-16 py-2 rounded-md hover:text-[#1AA5C0] hover:bg-white hover:border focus:border-[#1AA4C0]  focus:outline-none"
                 >
                   Terminer
                 </button>

@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import PatientSlice from "./features/PatientSlice";
-import { TypedUseSelectorHook, useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import patientReducer from "./features/PatientSlice";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
-    patient: PatientSlice.reducer,
+    patient: patientReducer,
   },
 });
 
