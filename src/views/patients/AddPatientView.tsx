@@ -39,7 +39,7 @@ export default function AddPatientView(): JSX.Element {
 
   const handleCancel = () => {
     setFormData(initialFormData);
-    setAge(null);
+    setAge(0);
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
