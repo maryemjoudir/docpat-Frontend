@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 interface ProtectedRouteProps {
-  token: string | null; // Token peut être une chaîne ou null
+  token: string | null;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ token }) => {

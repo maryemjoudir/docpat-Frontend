@@ -13,8 +13,8 @@ export function Index() {
     <Routes>
       <Route path="/" element={<GlobalComponent />}>
         <Route path="login" element={<Login />} />
+        <Route path="patient" element={<PatientView />} />
         <Route element={<ProtectedRoute token={token} />}>
-          <Route path="patient" element={<PatientView />} />
           <Route path="add" element={<AddPatientView />} />
           <Route path="read" element={<ReadPatientView />} />
         </Route>
